@@ -18,31 +18,127 @@ int	smallest(stack *head)
 	}
 	return(smallest);
 }
+int foo(int *arr, int num)
+{
+	int i = 0;
+	while (arr[i])
+	{
+		if (arr[i] == num)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+int	smallest_whithout(stack *head, int num, int len)
+{
+	int	smallest;
+	int	smallest_i;
+	int	i;
+	static int *arr;
+	static int u;
 
-void sortt(stack *stack_a, stack *stack_b)
+	i = 0;
+	arr = malloc(sizeof(int) * len);
+	while (i < len)
+	{
+		arr[i] = -2147483648;
+		i++;
+	}
+	i = 0;
+	smallest = 2147483647;
+	while (head)
+	{
+		if (head->value < smallest && foo(arr, head->value))
+		{
+			smallest = head->value;
+			arr[u] = smallest;
+			u++;
+		}
+		head = head->next;
+	}
+	i = 0;
+	while (arr[i])
+	{
+		printf("arr %d ", arr[i]);
+		i++;
+	}
+	return(smallest);
+}
+// int	find_smallest_whithout(stack *head, int num)
+// {
+// 	int	smallest;
+// 	int	smallest_i;
+// 	int	i;
+
+// 	i = 0;
+// 	smallest = 2147483647;
+// 	while (head)
+// 	{
+// 		if (head->value < smallest && head->value != num)
+// 		{
+// 			smallest = head->value;
+// 			smallest_i = i;
+// 		}
+// 		i++;
+// 		head = head->next;
+// 	}
+// 	printf("smallest %d on %d\n", smallest, smallest_i);
+// 	return(smallest_i);
+// }
+void sortt(stack **stack_a, stack *stack_b)
 {
 	int i;
 	int small;
 	int u;
+	stack *tmp;
 
-	i = 1;
+	i = 0;
 	u = 0;
-	while (stack_a)
+	int y = 0;
+	tmp = *stack_a;
+	int len = stack_len(*stack_a);
+	// small = smallest(*stack_a);
+	// y = find_smallest_whithout(*stack_a, 2147483647);
+	small = smallest_whithout(*stack_a, 2147483647, len);
+	while (i != len)
 	{
-		small = smallest(stack_a);
-		while (stack_a->value != small)
+		
+		while ((*stack_a)->value != small)
 		{
-			ra(&stack_a, NULL);
+			// ra(stack_a, NULL);
+			*stack_a = (*stack_a)->next;
 		}
-		stack_a->order = i;
+		
+		// y = find_smallest_whithout(*stack_a, small);
+		// small = 
+		(*stack_a)->order = i;
 		i++;
-		pb(&stack_a, &stack_b, NULL);
+		//pb(stack_a, &stack_b, NULL);
 		u++;
+		*stack_a = tmp;
+		small = smallest_whithout(*stack_a, small, len);
 	}
-	while (u > 0)
+	// while (u > 0)
+	// {
+	// 	pa(stack_a, &stack_b, NULL);
+	// 	u--;
+	// }
+	printf("stack_a:     ");
+	print_stack(*stack_a);
+}
+
+void order_stack_a(stack **stack_a, stack *tmp)
+{
+	stack *head;
+
+	head = *stack_a;
+	while (tmp)
 	{
-		pa(&stack_a, &stack_b, NULL);
-		u--;
+		*stack_a = head;
+		while ((*stack_a)->value != tmp->value)
+			*stack_a = (*stack_a)->next;
+		(*stack_a)->order = tmp->order;
+		tmp = tmp->next;
 	}
 }
 
@@ -54,21 +150,23 @@ int	main(int argc, char **argv)
 	int		len;
 	stack *tmp;
 	stack *head;
+	int order;
 
+	int i = 1;
 	len = 1;
 	tmp = NULL;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	argv[1] = "2";
-	argv[2] = "1";
-	argv[3] = "19";
-	argv[4] = "30";
-	argv[5] = "23";
-	argv[6] = "11";
-	argv[7] = "43";
-	argv[8] = "22";
-	argv[9] = "0";
+	argv[1] = "2"; //      10
+	argv[2] = "1"; //       1
+	argv[3] = "7"; //     111
+	argv[4] = "30"; //  11110
+	argv[5] = "23"; //  10111
+	argv[6] = "11"; //   1011
+	argv[7] = "43"; // 101011
+	argv[8] = "22"; //  10110
+	argv[9] = "0"; //       0
 	argc = 10;
 	if (argc == 1)
 		exit_str("");
@@ -87,16 +185,31 @@ int	main(int argc, char **argv)
 	duplicates_check(stack_a);
 	print_stack(stack_a);
 	len = stack_len(stack_a);
-	sortt(tmp, stack_b);
-
-	// while (stack_a)
-	// {
-	// 	while (stack_a->value != tmp->value)
-	// 		stack_a = stack_a->next;
-	// }
-	// (tmp + 2)->next = tmp + 3;
-
+	sortt(&tmp, stack_b);
+	// order_stack_a(&stack_a, tmp);
 	stack_a = head;
+	// order = stack_a->order;
+	// while (is_sorted(stack_a) != 1 && i != 10)
+	// {
+	// 	if (((order >> i) & 1) == 0)
+	// 	{
+	// 		pb(&stack_a, &stack_b, "pb\n");
+
+	// 	}
+	// 	else
+	// 	{
+	// 		ra(&stack_a, "ra\n");
+	// 	}
+	// 	// if (stack_len(stack_b) > (len / 2))
+	// 	// {
+	// 	// 	while (stack_b)
+	// 	// 		pa(&stack_a, &stack_b, "pa\n");
+	// 	// }
+	// 	order = stack_a->order;
+	// 	i++;
+	// }
+
+	// stack_a = head;
 	printf("tmp:     ");
 	print_stack(tmp);
 	printf("satck_a: ");
