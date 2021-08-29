@@ -27,7 +27,7 @@ typedef struct	t_list {
 void	add_argv(stack **head, int num);
 void	exit_str(char *str_error);
 void	print_stack(stack* head);
-void	push(stack **head, int num);
+void	push(stack **head, int num, int order);
 void	duplicates_check(stack *head);
 void	sa(stack **stack_a, char *str);
 void	sb(stack **stack_b, char *str);

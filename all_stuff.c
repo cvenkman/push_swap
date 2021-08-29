@@ -96,7 +96,7 @@ int	stack_len(stack *head)
 	return (len);
 }
 
-void	push(stack **head, int num)
+void	push(stack **head, int num, int order)
 {
 	stack	*new;
 	stack	*first;
@@ -106,6 +106,7 @@ void	push(stack **head, int num)
     	exit_str("malloc");
 	new->next = *head;
 	new->value = num;
+	new->order = order;
 	*head = new;
 }
 
@@ -144,3 +145,40 @@ int	pop(stack **head)
 	// 	tmp = tmp->next;
 	// }
 	// tmp->next = NULL;
+
+// 	int	smallest_whithout(stack *head, int num, int len)
+// {
+// 	int	smallest;
+// 	int	smallest_i;
+// 	int	i;
+// 	static int *arr;
+// 	static int u;
+
+// 	i = 0;
+// 	arr = malloc(sizeof(int) * len);
+// 	while (i < len)
+// 	{
+// 		arr[i] = -2147483648;
+// 		i++;
+// 	}
+// 	i = 0;
+// 	smallest = 2147483647;
+// 	while (head)
+// 	{
+// 		if (head->value < smallest && foo(arr, head->value))
+// 		{
+// 			smallest = head->value;
+// 			arr[u] = smallest;
+// 			u++;
+// 		}
+// 		head = head->next;
+// 	}
+// 	i = 0;
+// 	while (arr[i])
+// 	{
+// 		printf("arr %d ", arr[i]);
+// 		i++;
+// 	}
+// 	return(smallest);
+// }
+
