@@ -64,27 +64,24 @@ int	smallest_whithout(stack *head, int num, int len)
 	}
 	return(smallest);
 }
-// int	find_smallest_whithout(stack *head, int num)
-// {
-// 	int	smallest;
-// 	int	smallest_i;
-// 	int	i;
+int	smallest1(stack *head, int num)
+{
+	int	smallest;
+	int	smallest_i;
+	int	i;
 
-// 	i = 0;
-// 	smallest = 2147483647;
-// 	while (head)
-// 	{
-// 		if (head->value < smallest && head->value != num)
-// 		{
-// 			smallest = head->value;
-// 			smallest_i = i;
-// 		}
-// 		i++;
-// 		head = head->next;
-// 	}
-// 	printf("smallest %d on %d\n", smallest, smallest_i);
-// 	return(smallest_i);
-// }
+	i = 0;
+	smallest = 2147483647;
+	while (head)
+	{
+		if (head->value < smallest && head->value > num)
+		{
+			smallest = head->value;
+		}
+		head = head->next;
+	}
+	return(smallest);
+}
 void sortt(stack **stack_a, stack *stack_b)
 {
 	int i;
@@ -97,9 +94,9 @@ void sortt(stack **stack_a, stack *stack_b)
 	int y = 0;
 	tmp = *stack_a;
 	int len = stack_len(*stack_a);
-	// small = smallest(*stack_a);
+	small = smallest(*stack_a); // small = smallest1(*stack_a, -2147483648);
 	// y = find_smallest_whithout(*stack_a, 2147483647);
-	small = smallest_whithout(*stack_a, 2147483647, len);
+	// small = smallest_whithout(*stack_a, 2147483647, len);
 	while (i != len)
 	{
 		
@@ -109,21 +106,22 @@ void sortt(stack **stack_a, stack *stack_b)
 			*stack_a = (*stack_a)->next;
 		}
 		
-		// y = find_smallest_whithout(*stack_a, small);
+		
 		// small = 
 		(*stack_a)->order = i;
 		i++;
 		//pb(stack_a, &stack_b, NULL);
-		u++;
+		// u++;
 		*stack_a = tmp;
-		small = smallest_whithout(*stack_a, small, len);
+		small = smallest1(*stack_a, small);
+		// small = smallest_whithout(*stack_a, small, len);
 	}
 	// while (u > 0)
 	// {
 	// 	pa(stack_a, &stack_b, NULL);
 	// 	u--;
 	// }
-	printf("stack_a:     ");
+	printf("sstack_a (tmp):     ");
 	print_stack(*stack_a);
 }
 
@@ -140,6 +138,27 @@ void order_stack_a(stack **stack_a, stack *tmp)
 		(*stack_a)->order = tmp->order;
 		tmp = tmp->next;
 	}
+}
+
+void fio(stack *stack_a)
+{
+	printf("satck_a___: ");
+	print_stack(stack_a);
+}
+
+int gg(stack *stack_a, int bit)
+{
+	int i = 0;
+	int order;
+	order = stack_a->order;
+	while (stack_a)
+	{
+		if (((order >> bit) & 1) == 0)
+			return (-1);
+		stack_a = stack_a->next;
+		order = stack_a->order;
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -162,7 +181,7 @@ int	main(int argc, char **argv)
 	argv[2] = "1"; //       1
 	argv[3] = "7"; //     111
 	argv[4] = "30"; //  11110
-	argv[5] = "23"; //  10111
+	argv[5] = "-7"; //  10111
 	argv[6] = "11"; //   1011
 	argv[7] = "43"; // 101011
 	argv[8] = "22"; //  10110
@@ -185,36 +204,50 @@ int	main(int argc, char **argv)
 	duplicates_check(stack_a);
 	print_stack(stack_a);
 	len = stack_len(stack_a);
-	sortt(&tmp, stack_b);
+	sortt(&stack_a, stack_b);
 	// order_stack_a(&stack_a, tmp);
 	stack_a = head;
-	// order = stack_a->order;
-	// while (is_sorted(stack_a) != 1 && i != 10)
-	// {
-	// 	if (((order >> i) & 1) == 0)
-	// 	{
-	// 		pb(&stack_a, &stack_b, "pb\n");
-
-	// 	}
-	// 	else
-	// 	{
-	// 		ra(&stack_a, "ra\n");
-	// 	}
-	// 	// if (stack_len(stack_b) > (len / 2))
-	// 	// {
-	// 	// 	while (stack_b)
-	// 	// 		pa(&stack_a, &stack_b, "pa\n");
-	// 	// }
-	// 	order = stack_a->order;
-	// 	i++;
-	// }
-
-	// stack_a = head;
-	printf("tmp:     ");
-	print_stack(tmp);
 	printf("satck_a: ");
 	print_stack(stack_a);
 	printf("satck_b: ");
 	print_stack(stack_b);
+	// fio(stack_a);
+	i = 1;
+	// printf("%d  %d\n", 127, ((127 >> 6) & 1));
+	// order = stack_a->order;
+	// while (is_sorted(stack_a) != 1)
+	// {
+		int u =0;
+		while (is_sorted(stack_a) != 1 && u < 5)
+		{
+			i = 1;
+			u++;
+			while (stack_a != NULL && gg(stack_a, i) != 0)
+			{
+				order = stack_a->order;
+				if (((order >> i) & 1) == 0)
+				{
+					pb(&stack_a, &stack_b, "pb\n");
 
+				}
+				else
+				{
+					ra(&stack_a, "ra\n");
+				}
+				
+				i++;
+			}
+			
+			printf("sort satck_a: ");
+			print_stack(stack_a);
+			printf("sort satck_b: ");
+			print_stack(stack_b);
+			while (stack_b)
+				pa(&stack_a, &stack_b, "pa\n");
+		}
+	// }
+	printf("sort satck_a: ");
+	print_stack(stack_a);
+	printf("sort satck_b: ");
+	print_stack(stack_b);
 }
