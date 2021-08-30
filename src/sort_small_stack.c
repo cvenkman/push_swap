@@ -1,14 +1,14 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void sort_two(stack **stack_a)
+static void	sort_two(t_stack **stack_a)
 {
 	if ((*stack_a)->value > (*stack_a)->next->value)
 		sa(stack_a, "sa\n");
 }
 
-void	sort_three(stack **head)
+static void	sort_three(t_stack **head)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 	int		smallest_i;
 	int		biggets_i;
 
@@ -33,7 +33,7 @@ void	sort_three(stack **head)
 	}
 }
 
-static void	sort_four(stack **stack_a, stack **stack_b)
+static void	sort_four(t_stack **stack_a, t_stack **stack_b)
 {
 	if (find_smallest(*stack_a) == 3)
 		rra(stack_a, "rra\n");
@@ -45,7 +45,7 @@ static void	sort_four(stack **stack_a, stack **stack_b)
 	pa(stack_a, stack_b, "pa\n");
 }
 
-static void	sort_five(stack **stack_a, stack **stack_b)
+static void	sort_five(t_stack **stack_a, t_stack **stack_b)
 {
 	if (find_biggest(*stack_a) == 3 || find_biggest(*stack_a) == 4)
 		while (find_biggest(*stack_a) != 0)
@@ -59,7 +59,7 @@ static void	sort_five(stack **stack_a, stack **stack_b)
 	ra(stack_a, "ra\n");
 }
 
-void	sort_small_stack(stack **stack_a, stack **stack_b, int stack_len)
+void	sort_small_stack(t_stack **stack_a, t_stack **stack_b, int stack_len)
 {
 	if (stack_len == 3)
 		sort_three(stack_a);

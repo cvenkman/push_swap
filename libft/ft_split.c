@@ -6,7 +6,7 @@
 /*   By: cvenkman <cvenkman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 18:06:07 by cvenkman          #+#    #+#             */
-/*   Updated: 2021/06/27 20:10:49 by cvenkman         ###   ########.fr       */
+/*   Updated: 2021/08/30 18:05:10 by cvenkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ static char	*ft_copy(char const *str, unsigned int arr_elem_len)
 	i = 0;
 	arr_elem = malloc(sizeof(char) * (arr_elem_len + 1));
 	if (!arr_elem)
-		return (NULL);
+	{
+		ft_putstr_fd("malloc\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	while (i < arr_elem_len)
 	{
 		arr_elem[i] = str[i];
@@ -90,16 +93,18 @@ char	**ft_split(char const *s, char c)
 	word_count = ft_c_count(s, c);
 	arr = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (!arr)
-		return (NULL);
+	{
+		ft_putstr_fd("malloc\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	while (i < word_count)
 	{
 		while (*s == c)
 			s++;
 		arr[i] = ft_copy(s, ft_arr_elem_len(s, c));
-		if (arr[i] == NULL)
+		if (arr[i++] == NULL)
 			return (ft_malloc_free(arr, word_count));
 		s = s + ft_arr_elem_len(s, c);
-		i++;
 	}
 	arr[i] = NULL;
 	return (arr);

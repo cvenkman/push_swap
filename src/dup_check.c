@@ -1,12 +1,12 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	duplicates_check(stack *head)
+void	duplicates_check(t_stack *head)
 {
-	stack	*tmp;
-	stack	*tmp_head;
-	
+	t_stack	*tmp;
+	t_stack	*tmp_head;
+	int		i;
+
 	tmp_head = head;
-	int i;
 	while (head)
 	{
 		tmp = tmp_head;
@@ -16,7 +16,7 @@ void	duplicates_check(stack *head)
 			if (head->value == tmp->value)
 				i++;
 			if (i > 1)
-				exit_str("there are duplicates");
+				exit_str("Error");
 			tmp = tmp->next;
 		}
 		head = head->next;

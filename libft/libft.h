@@ -6,7 +6,7 @@
 /*   By: cvenkman <cvenkman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:43:54 by cvenkman          #+#    #+#             */
-/*   Updated: 2021/06/27 17:52:59 by cvenkman         ###   ########.fr       */
+/*   Updated: 2021/08/30 17:48:55 by cvenkman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 size_t	ft_strlen(char const *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlcat (char *dest, const char *src, size_t size);
+size_t	ft_strlcat(char *dest, const char *src, size_t size);
 int		ft_strncmp(char const *s1, char const *s2, size_t n);
 int		ft_isprint(int sym);
 int		ft_isalpha(int sym);
 int		ft_isdigit(int sym);
 int		ft_isalnum(int sym);
 int		ft_isascii(int sym);
-int		ft_atoi(char const *str);
+int		ft_atoi(char const *str, int *flag);
 int		ft_toupper(int sym);
 int		ft_tolower(int sym);
 int		ft_memcmp(void const *str1, void const *str2, size_t n);

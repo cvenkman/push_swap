@@ -1,11 +1,11 @@
 NAME = push_swap
 
-SRCS =	commands/push.c			add_argv.c\
-		commands/rotate.c		all_stuff.c\
-		commands/swap.c			dup_check.c\
-		commands/rrotate.c		errors.c\
-		main.c					sort_small_stack.c\
-		sort.c					
+SRCS =	commands/push.c			src/add_argv.c\
+		commands/rotate.c		src/stuff.c\
+		commands/swap.c			src/dup_check.c\
+		commands/rrotate.c		src/errors.c\
+		main.c					src/sort_small_stack.c\
+		src/sort_order.c				solve.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -16,8 +16,6 @@ all : $(NAME)
 $(NAME) : $(OBJS) $(HEADER)
 	$(MAKE) -C libft
 	$(CC) $(OBJS) $(CFLAGS) libft/libft.a -o $(NAME)
-
-
 
 clean:
 	$(MAKE) clean -C libft

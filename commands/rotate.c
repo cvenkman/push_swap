@@ -1,9 +1,9 @@
 #include "../push_swap.h"
 
-void	ra(stack **stack_a, char *str)
+void	ra(t_stack **stack_a, char *str)
 {
-	stack	*head;
-	stack	*second;
+	t_stack	*head;
+	t_stack	*second;
 
 	if (stack_len(*stack_a) == 0 || stack_len(*stack_a) == 1)
 		return ;
@@ -18,10 +18,10 @@ void	ra(stack **stack_a, char *str)
 	*stack_a = second;
 }
 
-void	rb(stack **stack_b, char *str)
+void	rb(t_stack **stack_b, char *str)
 {
-	stack	*head;
-	stack	*second;
+	t_stack	*head;
+	t_stack	*second;
 
 	if (stack_len(*stack_b) == 0 || stack_len(*stack_b) == 1)
 		return ;
@@ -36,7 +36,7 @@ void	rb(stack **stack_b, char *str)
 	*stack_b = second;
 }
 
-void	rr(stack **stack_a,stack **stack_b, char *str)
+void	rr(t_stack **stack_a, t_stack **stack_b, char *str)
 {
 	if (str)
 		ft_putstr_fd(str, 1);

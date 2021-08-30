@@ -1,10 +1,10 @@
 #include "../push_swap.h"
 
-void	rra(stack **stack_a, char *str)
+void	rra(t_stack **stack_a, char *str)
 {
-	stack	*head;
-	stack	*tmp;
-	stack	*last;
+	t_stack	*head;
+	t_stack	*tmp;
+	t_stack	*last;
 
 	if (str)
 		ft_putstr_fd(str, 1);
@@ -20,11 +20,11 @@ void	rra(stack **stack_a, char *str)
 	*stack_a = last;
 }
 
-void	rrb(stack **stack_b, char *str)
+void	rrb(t_stack **stack_b, char *str)
 {
-	stack	*head;
-	stack	*tmp;
-	stack	*last;
+	t_stack	*head;
+	t_stack	*tmp;
+	t_stack	*last;
 
 	if (str)
 		ft_putstr_fd(str, 1);
@@ -40,7 +40,7 @@ void	rrb(stack **stack_b, char *str)
 	*stack_b = last;
 }
 
-void	rrr(stack **stack_a, stack **stack_b, char *str)
+void	rrr(t_stack **stack_a, t_stack **stack_b, char *str)
 {
 	if (str)
 		ft_putstr_fd(str, 1);

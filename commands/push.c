@@ -1,33 +1,33 @@
 #include "../push_swap.h"
 
-void	pa(stack **stack_a, stack **stack_b, char *str)
+void	pa(t_stack **stack_a, t_stack **stack_b, char *str)
 {
-	int	first_b;
-	int order;
+	int		first_b;
+	int		order;
+	t_stack	*tmp;
 
+	tmp = *stack_b;
 	if (stack_len(*stack_b) == 0)
 		return ;
 	if (str)
 		ft_putstr_fd(str, 1);
-	order = (*stack_b)->order;
-	first_b = pop(stack_b);
-	push(stack_a, first_b, order);
-	// foo->a_size++;
-	// foo->b_size--;
+	*stack_b = (*stack_b)->next;
+	tmp->next = *stack_a;
+	*stack_a = tmp;
 }
 
-void	pb(stack **stack_a, stack **stack_b, char *str)
+void	pb(t_stack **stack_a, t_stack **stack_b, char *str)
 {
-	int	first_a;
-	int order;
+	int		first_a;
+	int		order;
+	t_stack	*tmp;
 
+	tmp = *stack_a;
 	if (stack_len(*stack_a) == 0)
 		return ;
 	if (str)
 		ft_putstr_fd(str, 1);
-	order = (*stack_a)->order;
-	first_a = pop(stack_a);
-	push(stack_b, first_a, order);
-	// foo->a_size--;
-	// foo->b_size++;
+	*stack_a = (*stack_a)->next;
+	tmp->next = *stack_b;
+	*stack_b = tmp;
 }
