@@ -3,8 +3,6 @@
 This project will make you sort data on a stack, with a limited set of instructions, using
 the lowest possible number of actions.
 
-![alt text](https://github.com/cvenkman/push_swap/blob/main/resources/final_mark.png?raw=true)
-
 ### Compiling
 
 * To compile
