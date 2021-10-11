@@ -20,4 +20,5 @@ the lowest possible number of actions.
 
 `./push_swap [numbers]`
 `./push_swap 2 3 4 0 44 -23`
+
 `./push_swap 2 3 4 0 44 -23 | wc -l`
