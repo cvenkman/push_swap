@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	foo(t_stack **stack_a, t_stack **stack_b)
+static void	check_and_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int		len;
 
@@ -35,6 +35,6 @@ int	main(int argc, char **argv)
 		return (0);
 	if (stack_len(stack_a) == 0)
 		exit_str("Error");
-	foo(&stack_a, &stack_b);
+	check_and_sort(&stack_a, &stack_b);
 	return (0);
 }

@@ -11,16 +11,6 @@ int	is_sorted(t_stack *head)
 	return (0);
 }
 
-void	print_stack(t_stack *head)
-{
-	while (head)
-	{
-		printf("%d ", head->value);
-		head = head->next;
-	}
-	printf ("\n");
-}
-
 int	stack_len(t_stack *head)
 {
 	int		len;

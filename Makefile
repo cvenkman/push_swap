@@ -5,7 +5,7 @@ SRCS =	commands/push.c			src/add_argv.c\
 		commands/swap.c			src/dup_check.c\
 		commands/rrotate.c		src/errors.c\
 		main.c					src/sort_small_stack.c\
-		src/sort_order.c				solve.c
+		src/sort_order.c		src/solve.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,5 +1,8 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
+/**
+**	@brief	radix sort
+*/
 void	solve(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	int	bit;
